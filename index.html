@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTM Global Research Fellowship (GRF) 2026</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        utmmaroon: '#7a1130',
+                        utmgold: '#fbb03b',
+                        utmred: '#a91b40',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f3f4f6;
+            scroll-behavior: smooth;
+        }
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-link.active {
+            border-bottom: 2px solid #fbb03b;
+            color: #fbb03b;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        /* FAQ Accordion Transition */
+        .faq-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .faq-active .faq-content {
+            max-height: 500px; /* arbitrary max height */
+        }
+        .faq-active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="bg-utmmaroon text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <!-- UTM Ascend Logo -->
+                    <div class="flex-shrink-0 flex items-center h-16 py-2">
+                        <!-- The image tag uses the exact file name. If it fails to load (like in this web preview), it hides itself and shows the text fallback -->
+                        <img src="New UTM ASCEND2030 WT.png" alt="UTM ASCEND 2030" class="h-full w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+                        
+                        <!-- Text fallback for the web preview -->
+                        <div id="logo-fallback" class="hidden h-full items-center font-extrabold text-2xl tracking-widest text-white">
+                            UTM <span class="text-utmgold ml-2">ASCEND <span class="text-white text-lg">2030</span></span>
+                        </div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="text-sm text-utmgold font-bold uppercase tracking-wider block mt-1">Global Research Fellowship 2026</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="switchTab('home')" class="nav-link active px-3 py-2 text-sm font-medium hover:text-utmgold transition-colors duration-200" id="nav-home">Home & Info</button>
+                    <button onclick="switchTab('apply')" class="nav-link px-3 py-2 text-sm font-medium hover:text-utmgold transition-colors duration-200" id="nav-apply">Eligibility & Apply</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-white hover:text-utmgold focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-utmred pb-4 px-2 space-y-1 shadow-inner">
+            <button onclick="switchTab('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-base font-medium text-white hover:bg-utmmaroon hover:text-utmgold rounded-md">Home & Info</button>
+            <button onclick="switchTab('apply'); toggleMobileMenu()" class="block w-full text-left px-4 py-2 text-base font-medium text-white hover:bg-utmmaroon hover:text-utmgold rounded-md">Eligibility & Apply</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <div id="view-home" class="view-section active flex-grow">
+            
+            <!-- Hero Section -->
+            <div class="relative bg-utmmaroon text-white overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 pr-8">
+                        <span class="inline-block py-1 px-3 rounded-full bg-utmgold text-utmmaroon text-sm font-bold tracking-wide mb-4">OPEN FOR 2026</span>
+                        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Connecting Global Talent with <span class="text-utmgold">UTM Research</span></h1>
+                        <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">Foster international collaboration, expand academic networks, and drive high-impact publications through remote attachment.</p>
+                        
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button onclick="switchTab('apply')" class="bg-utmgold hover:bg-yellow-400 text-utmmaroon font-bold py-3 px-8 rounded-lg shadow-lg transform transition hover:-translate-y-1 flex items-center justify-center">
+                                Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                            <a href="#details" class="bg-transparent border-2 border-white hover:bg-white hover:text-utmmaroon text-white font-semibold py-3 px-8 rounded-lg transition duration-300 flex items-center justify-center">
+                                Read Guidelines
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 mt-10 md:mt-0 flex justify-center">
+                        <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl text-center w-full max-w-sm transform hover:scale-105 transition-transform duration-300">
+                            <div class="text-utmgold text-5xl mb-4 animate-bounce"><i class="fas fa-calendar-check"></i></div>
+                            <h3 class="text-2xl font-bold mb-3 tracking-wide">Application Window</h3>
+                            <div class="bg-white/20 rounded-lg p-3 mb-4 border border-white/30">
+                                <p class="text-lg font-medium text-white">Opens: <span class="font-bold text-utmgold">17 Sept 2026</span></p>
+                                <p class="text-lg font-medium text-white mt-1">Deadline: <span class="font-bold text-red-400">25 Sept 2026</span></p>
+                            </div>
+                            <p class="text-sm text-gray-200 leading-relaxed">Don't miss out! Submit your application via the Eligibility & Apply tab.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Facts Grid -->
+            <div id="details" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-8 relative z-20">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-utmgold hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="text-utmmaroon text-3xl mb-4"><i class="fas fa-money-bill-wave"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Incentive</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">Total of <strong>RM5,000</strong> per fellow. Disbursed strategically across the 4-month duration.</p>
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-100 text-xs text-yellow-800 leading-relaxed">
+                            <strong>Payment Conditions:</strong> Incentive payments will be made in three (3) stages:
+                            <ol class="list-decimal pl-4 mt-1 space-y-1">
+                                <li><strong>First payment:</strong> The October and November payments will be disbursed together at the end of November.</li>
+                                <li><strong>Second payment:</strong> One payment will be disbursed at the end of December.</li>
+                                <li><strong>Final payment:</strong> The final payment will be made upon publication of the indexed journal article, subject to the achievement of the required conditions and compliance with the specified requirements.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-utmmaroon hover:shadow-xl transition-shadow">
+                        <div class="text-utmmaroon text-3xl mb-4"><i class="fas fa-globe"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Remote Attachment</h3>
+                        <p class="text-gray-600">Physical presence in Malaysia is <strong>NOT required</strong>. Conduct regular online discussions with your UTM supervisor.</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500 hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="text-utmmaroon text-3xl mb-4"><i class="fas fa-bullseye"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Target KPI</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">At least <strong>1 publication</strong> accepted in Q1-Q4 Web of Science (WoS) journal with UTM affiliation.</p>
+                        <div class="bg-blue-50 p-3 rounded-lg border border-blue-100 text-xs text-blue-900 leading-relaxed">
+                            <strong>Authorship Rule:</strong> The applicant must be the <strong>First Author</strong>, while the supervisor must be the <strong>Corresponding Author</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Split Section -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <!-- Eligibility -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-2xl font-bold text-utmmaroon mb-6 border-b pb-2">Who Can Apply?</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700"><strong>International postgraduate graduates (Master's/PhD)</strong> who have received at least the Senate Approval Letter / Completion of Studies.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Must <strong>NOT</strong> be employed full-time by any university during the fellowship period.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 text-lg"></i>
+                                <span class="text-gray-700">Must identify and obtain approval from a <strong>UTM academic staff member</strong> to serve as the supervisor.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-2xl font-bold text-utmmaroon mb-6 border-b pb-2">Program Schedule</h2>
+                        <div class="relative border-l-2 border-gray-200 ml-3 space-y-6">
+                            
+                            <div class="relative pl-6">
+                                <div class="absolute -left-1.5 top-1 w-3 h-3 bg-utmgold rounded-full shadow"></div>
+                                <h4 class="font-bold text-gray-900">17 September 2026</h4>
+                                <p class="text-sm text-gray-600">Opening of Applications</p>
+                            </div>
+                            
+                            <div class="relative pl-6">
+                                <div class="absolute -left-1.5 top-1 w-3 h-3 bg-gray-300 rounded-full border-2 border-white"></div>
+                                <h4 class="font-bold text-gray-900">23 September 2026 (3:00 PM @ Webex)</h4>
+                                <p class="text-sm text-gray-600">Briefing Session by RMC <br><span class="text-xs font-semibold text-utmmaroon italic">(The Webex link will be provided upon successful submission of application)</span></p>
+                            </div>
+
+                            <div class="relative pl-6">
+                                <div class="absolute -left-1.5 top-1 w-3 h-3 bg-red-500 rounded-full shadow"></div>
+                                <h4 class="font-bold text-gray-900">25 September 2026</h4>
+                                <p class="text-sm text-gray-600">Application Deadline</p>
+                            </div>
+
+                            <div class="relative pl-6">
+                                <div class="absolute -left-1.5 top-1 w-3 h-3 bg-blue-500 rounded-full shadow"></div>
+                                <h4 class="font-bold text-gray-900">30 September 2026</h4>
+                                <p class="text-sm text-gray-600">Announcement of Results</p>
+                            </div>
+
+                            <div class="relative pl-6">
+                                <div class="absolute -left-2 top-1 w-4 h-4 bg-utmmaroon rounded-full shadow flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                </div>
+                                <h4 class="font-bold text-utmmaroon">1 Oct 2026 - 31 Jan 2027</h4>
+                                <p class="text-sm text-gray-700 font-medium">Fellowship Duration (4 Months)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Guidelines & Responsibilities Section -->
+            <div class="bg-white py-12 border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        
+                        <!-- Responsibilities -->
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl mr-4">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h2 class="text-2xl font-bold text-gray-900">Responsibilities of Fellows</h2>
+                            </div>
+                            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200 h-full shadow-sm">
+                                <ul class="space-y-4 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-angle-right text-utmmaroon mt-1.5 mr-3"></i>
+                                        <span>Conduct <strong>regular online discussions</strong> and monitoring sessions with the UTM supervisor.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-angle-right text-utmmaroon mt-1.5 mr-3"></i>
+                                        <div>
+                                            <strong>Submit monthly reports</strong> including:
+                                            <ul class="list-disc pl-5 mt-1 text-sm text-gray-600">
+                                                <li>Summary of research activities</li>
+                                                <li>Challenges & proposed solutions</li>
+                                                <li>Supervisor's evaluation</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-angle-right text-utmmaroon mt-1.5 mr-3"></i>
+                                        <div>
+                                            <strong>Submit a Final Report</strong> comprising:
+                                            <ul class="list-disc pl-5 mt-1 text-sm text-gray-600">
+                                                <li>Research achievements throughout the fellowship period</li>
+                                                <li>Publication details (Q1-Q4 with UTM affiliation)</li>
+                                                <li>Manuscript copy</li>
+                                                <li>Supervisor's endorsement of research quality and fellow's contribution</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Termination -->
+                        <div>
+                            <div class="flex items-center mb-6">
+                                <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xl mr-4">
+                                    <i class="fas fa-user-times"></i>
+                                </div>
+                                <h2 class="text-2xl font-bold text-gray-900">Termination of Appointment</h2>
+                            </div>
+                            <div class="bg-red-50 rounded-xl p-6 border border-red-100 h-full shadow-sm">
+                                <p class="text-gray-800 mb-4 font-medium">The fellowship may be terminated if:</p>
+                                <ul class="space-y-4 text-red-900">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                                        <span>There is <strong>no significant research progress</strong> within three (3) months.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                                        <span>The fellow <strong>fails to submit the final report</strong> and deliverables as required.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-3"></i>
+                                        <span>The fellow <strong>fails to meet the requirements</strong> for submission of the final report and research outcomes.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-gray-100 py-16 border-t border-gray-200">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Frequently Asked Questions</h2>
+                    
+                    <div class="space-y-4">
+                        <!-- FAQ 1 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Can Master's degree holders in taught course apply?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">Yes. Both Master's by Coursework (taught course) and Master's by Research are eligible to apply.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Can I apply if I already hold a Master's degree and am currently pursuing a PhD?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">No. GRF is only open to graduates (those who have officially completed their studies and received Senate Approval). Current students, including those pursuing a PhD, are not eligible. This avoids complications related to student visa status and misuse.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Do applicants need to be physically present in Malaysia?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">No. This is a remote attachment. Physical presence in Malaysia is not required during the fellowship.</div>
+                            </div>
+                        </div>
+                        
+                        <!-- FAQ 4 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Is it compulsory to have a UTM academic staff as a supervisor?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">Yes. Applicants must identify and obtain approval from a UTM academic staff member to be their supervisor before applying. Note: Application should be formally initiated/made by the Supervisor on behalf of the candidate via the forms.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Must the name on the applicant's bank account match their passport?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">Yes, the name on the bank account provided must exactly match the name on the applicant's passport to ensure a smooth payment process upon being selected as a GRF member.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 6 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">How can an applicant find and approach a potential UTM supervisor?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">Applicants can search for UTM lecturers through <a href="https://scholar.google.com/" target="_blank" class="text-utmmaroon underline">Google Scholar</a>, the official <a href="https://www.utm.my/" target="_blank" class="text-utmmaroon underline">UTM website</a>, or specific faculty websites to find an academic whose research niche aligns with their own. You may then contact them directly via email to propose a supervision arrangement.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 7 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Who is responsible for publication fees (e.g., Open Access charges)?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">If an applicant chooses to submit their paper to an Open Access journal, all publication fees are to be borne by the applicant themselves. The GRF program only provides the fixed RM5,000 incentive as mentioned.</div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 8 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden faq-item cursor-pointer" onclick="toggleFaq(this)">
+                            <div class="px-6 py-4 flex justify-between items-center bg-white hover:bg-gray-50 transition-colors">
+                                <h3 class="font-semibold text-gray-800">Is it possible to get an extension for the GRF programme duration?</h3>
+                                <i class="fas fa-chevron-down text-gray-400 faq-icon transition-transform duration-300"></i>
+                            </div>
+                            <div class="faq-content px-6 bg-gray-50 text-gray-600 text-sm">
+                                <div class="pb-4 pt-2">There is <strong>no extension</strong> for the GRF programme. However, if any of the GRF members fail to achieve an "accepted" or "published" status for their paper within the 4-month duration, the final incentive payment will be placed on hold until the paper status successfully changes to accepted/published.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reference Note -->
+            <div class="bg-white py-4 border-t text-center text-xs text-gray-400">
+                Data referenced from: <em>GRF 2026 Application Poster.pdf</em> and <em>GRADUATE RESEARCH FELLOWSHIP 2026 (1).pdf</em>
+            </div>
+        </div>
+
+        <!-- ================= APPLICATION PORTAL VIEW ================= -->
+        <div id="view-apply" class="view-section flex-grow py-10">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-extrabold text-utmmaroon">Eligibility Screener</h2>
+                    <p class="text-gray-600 mt-2">Please answer the following questions to determine if you/the candidate are eligible for the GRF 2026 program.</p>
+                </div>
+
+                <!-- Eligibility Form -->
+                <form id="eligibility-form" onsubmit="checkEligibility(event)" class="space-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
+                    
+                    <!-- Q1 -->
+                    <div class="border-b pb-4">
+                        <p class="text-lg font-medium text-gray-900 mb-3">1. Is the candidate an international postgraduate graduate (Master's or PhD)?</p>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q1" value="yes" required class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">Yes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q1" value="no" class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="border-b pb-4">
+                        <p class="text-lg font-medium text-gray-900 mb-3">2. Has the candidate officially completed their studies and received at least the Senate Approval Letter?</p>
+                        <p class="text-sm text-gray-500 mb-3">(Current students, including those currently pursuing a PhD, are not eligible).</p>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q2" value="yes" required class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">Yes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q2" value="no" class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="border-b pb-4">
+                        <p class="text-lg font-medium text-gray-900 mb-3">3. Will the candidate be employed on a FULL-TIME basis by ANY university during the fellowship period (1 Oct 2026 - 31 Jan 2027)?</p>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q3" value="yes" required class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">Yes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q3" value="no" class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="pb-4">
+                        <p class="text-lg font-medium text-gray-900 mb-3">4. Has a UTM academic staff member been identified and agreed to serve as the supervisor?</p>
+                        <div class="flex space-x-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q4" value="yes" required class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">Yes</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q4" value="no" class="h-4 w-4 text-utmmaroon focus:ring-utmmaroon border-gray-300">
+                                <span class="ml-2 text-gray-700">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-white bg-utmmaroon hover:bg-utmred focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-utmmaroon transition-colors duration-200">
+                            Check Eligibility
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Result: Eligible -->
+                <div id="result-eligible" class="hidden mt-8 bg-green-50 border-2 border-green-200 rounded-2xl p-8 text-center shadow-lg">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                        <i class="fas fa-check-circle text-green-600 text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-800 mb-2">You are Eligible!</h3>
+                    <p class="text-gray-700 mb-6">Based on your answers, the candidate meets the core criteria for the UTM Global Research Fellowship 2026.</p>
+                    
+                    <div class="bg-white p-4 rounded-lg text-left text-sm text-gray-600 mb-6 shadow-sm border border-gray-100">
+                        <strong class="text-gray-800"><i class="fas fa-info-circle text-blue-500 mr-1"></i> Document Upload Notice:</strong><br>
+                        You do not need to provide a Google Drive link here. The Google Form below will safely collect and store all required documents (CV, Passport, Senate Letter, Proposal, etc.) directly into RMC's secure system.
+                    </div>
+
+                    <a href="https://forms.gle/Wp22kdaGiQTggCsh6" target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-md shadow-md text-utmmaroon bg-utmgold hover:bg-yellow-400 focus:outline-none transition-transform transform hover:-translate-y-1">
+                        Proceed to Google Form Application <i class="fas fa-external-link-alt ml-2"></i>
+                    </a>
+                    
+                    <button onclick="resetEligibility()" class="block w-full text-sm text-gray-500 hover:text-gray-700 mt-6 underline">
+                        Start Over
+                    </button>
+                </div>
+
+                <!-- Result: Not Eligible -->
+                <div id="result-ineligible" class="hidden mt-8 bg-red-50 border-2 border-red-200 rounded-2xl p-8 text-center shadow-lg">
+                    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                        <i class="fas fa-times-circle text-red-600 text-4xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-red-800 mb-2">Not Eligible</h3>
+                    <p class="text-gray-700 mb-6">Unfortunately, based on your answers, the candidate does not meet the eligibility requirements for the GRF 2026 program at this time.</p>
+                    <ul class="text-left text-sm text-gray-600 bg-white p-4 rounded-lg list-disc pl-5 mb-6 border border-gray-100 inline-block">
+                        <li>Must be an international graduate.</li>
+                        <li>Must hold a Senate Approval Letter (Current students are ineligible).</li>
+                        <li>Must NOT be employed full-time by a university during the fellowship.</li>
+                        <li>Must have an approved UTM Supervisor.</li>
+                    </ul>
+                    <button onclick="resetEligibility()" class="block w-full text-sm text-gray-500 hover:text-gray-700 mt-2 underline">
+                        Re-check Eligibility
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h4 class="text-lg font-bold text-utmgold mb-1">UTM ASCEND 2030</h4>
+                <p class="text-sm text-gray-400">Research Management Centre (RMC)<br>Universiti Teknologi Malaysia</p>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-sm text-gray-300 mb-2">For inquiries please contact:</p>
+                <a href="mailto:researchfellow.rmc@utm.my" class="inline-flex items-center text-white hover:text-utmgold transition-colors">
+                    <i class="fas fa-envelope mr-2"></i> researchfellow.rmc@utm.my
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal for Alerts/Messages -->
+    <div id="custom-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black bg-opacity-50 transition-opacity backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4" id="modal-icon">
+                <i class="fas fa-check text-green-600 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2" id="modal-title">Success</h3>
+            <p class="text-sm text-gray-500 mb-6" id="modal-message">Your submission has been received.</p>
+            <button onclick="closeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-utmmaroon text-base font-medium text-white hover:bg-utmred focus:outline-none sm:text-sm">
+                Acknowledge
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show targeted view
+            document.getElementById('view-' + tabName).classList.add('active');
+            
+            // Update nav active states
+            document.querySelectorAll('.nav-link').forEach(el => {
+                el.classList.remove('active', 'border-b-2', 'border-utmgold', 'text-utmgold');
+            });
+            const activeDesktopTab = document.getElementById('nav-' + tabName);
+            if(activeDesktopTab) {
+                activeDesktopTab.classList.add('active', 'border-b-2', 'border-utmgold', 'text-utmgold');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0,0);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // FAQ Accordion Logic
+        function toggleFaq(element) {
+            // Close others
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(item => {
+                if(item !== element) {
+                    item.classList.remove('faq-active');
+                }
+            });
+            // Toggle current
+            element.classList.toggle('faq-active');
+        }
+
+        // Eligibility Logic
+        function checkEligibility(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('eligibility-form');
+            const q1 = form.querySelector('input[name="q1"]:checked').value;
+            const q2 = form.querySelector('input[name="q2"]:checked').value;
+            const q3 = form.querySelector('input[name="q3"]:checked').value;
+            const q4 = form.querySelector('input[name="q4"]:checked').value;
+
+            // Hide form
+            form.classList.add('hidden');
+
+            // Criteria: 
+            // Q1 (International Grad): yes
+            // Q2 (Senate Approval): yes
+            // Q3 (Full-time employed): no
+            // Q4 (UTM Supervisor): yes
+            if(q1 === 'yes' && q2 === 'yes' && q3 === 'no' && q4 === 'yes') {
+                document.getElementById('result-eligible').classList.remove('hidden');
+            } else {
+                document.getElementById('result-ineligible').classList.remove('hidden');
+            }
+        }
+
+        function resetEligibility() {
+            const form = document.getElementById('eligibility-form');
+            form.reset();
+            form.classList.remove('hidden');
+            document.getElementById('result-eligible').classList.add('hidden');
+            document.getElementById('result-ineligible').classList.add('hidden');
+        }
+
+        // Initialize active tab on load
+        document.addEventListener("DOMContentLoaded", () => {
+            switchTab('home');
+        });
+    </script>
+</body>
+</html>
